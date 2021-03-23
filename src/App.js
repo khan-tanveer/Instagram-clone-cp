@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import Post from "./Post";
-import { db, auth } from "./firebase";
+import { db, auth, storage } from "./firebase";
 import { Button, Input, makeStyles, Modal } from "@material-ui/core";
 
 // modal styles
@@ -43,12 +43,14 @@ function App() {
   const [posts, setPosts] = useState([]);
 
   // useEffect runs based on a specific condition
+
   useEffect(() => {
     // this is where the code runs
     db.collection("posts")
       .orderBy("timestamp", "desc")
       .onSnapshot((snapshot) => {
         // every time a new post is added, this code is fire
+
         setPosts(
           snapshot.docs.map((doc) => ({ id: doc.id, post: doc.data() }))
         );
