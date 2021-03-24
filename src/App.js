@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import Post from "./Post";
-import { db, auth, storage } from "./firebase";
+import { db, auth } from "./firebase";
 import { Button, Input, makeStyles, Modal } from "@material-ui/core";
 
 // modal styles
@@ -28,7 +28,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function App() {
+const App = () => {
+  const [posts, setPosts] = useState([]);
   // for modal
 
   const classes = useStyles();
@@ -38,33 +39,43 @@ function App() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [user, setUser] = useState(null);
   // for posts
-
-  const [posts, setPosts] = useState([]);
 
   // useEffect runs based on a specific condition
 
   useEffect(() => {
     // this is where the code runs
-    db.collection("posts")
-      .orderBy("timestamp", "desc")
-      .onSnapshot((snapshot) => {
-        // every time a new post is added, this code is fire
+    db.collection("posts").onSnapshot((snapshot) => {
+      // every time a new post is added, this code is fire
 
-        setPosts(
-          snapshot.docs.map((doc) => ({ id: doc.id, post: doc.data() }))
-        );
+      setPosts(snapshot.docs.map((doc) => ({ id: doc.id, post: doc.data() })));
 
-        console.log(
-          snapshot.docs.map((doc) => ({ id: doc.id, post: doc.data() }))
-        );
-      });
+      console.log(
+        snapshot.docs.map((doc) => ({ id: doc.id, post: doc.data() }))
+      );
+    });
+  }, []);
+
+  useEffect(() => {
+    auth.onAuthStateChanged((authUser) => {
+      if (authUser) {
+        // user has logged in
+        console.log(authUser);
+        setUser(authUser);
+      } else {
+        // user has logged out
+        setUser(null);
+      }
+    });
   }, []);
 
   const signUp = (e) => {
     e.preventDefault();
 
-    auth.createUserWithEmailAndPassword(email, password).catch();
+    auth
+      .createUserWithEmailAndPassword(email, password)
+      .catch((error) => alert(error.message));
   };
 
   return (
@@ -130,6 +141,6 @@ function App() {
       ))}
     </div>
   );
-}
+};
 
 export default App;
