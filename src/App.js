@@ -55,9 +55,9 @@ function App() {
           snapshot.docs.map((doc) => ({ id: doc.id, post: doc.data() }))
         );
 
-        // console.log(
-        //   snapshot.docs.map((doc) => ({ id: doc.id, post: doc.data() }))
-        // );
+        console.log(
+          snapshot.docs.map((doc) => ({ id: doc.id, post: doc.data() }))
+        );
       });
   }, []);
 

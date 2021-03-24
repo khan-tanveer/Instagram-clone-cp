@@ -5,6 +5,7 @@ import Avatar from "@material-ui/core/Avatar";
 const Posts = ({ username, caption, imageUrl }) => {
   return (
     <div className="post">
+      {/* header => avatar + username */}
       <div className="post__header">
         <Avatar
           className="post__avatar"
@@ -13,8 +14,6 @@ const Posts = ({ username, caption, imageUrl }) => {
         />
         <h3>{username}</h3>
       </div>
-
-      {/* header => avatar + username */}
 
       {/* Image */}
       <img className="post__image" src={imageUrl} alt="" />
