@@ -3,6 +3,7 @@ import "./App.css";
 import Post from "./Post";
 import { db, auth } from "./firebase";
 import { Button, Input, makeStyles, Modal } from "@material-ui/core";
+import ImageUpload from "./ImageUpload";
 
 // modal styles.................................................................................
 
@@ -110,10 +111,7 @@ const App = () => {
 
   return (
     <div className="App">
-      {/* I want to have a.... */}
-      {/* caption input */}
-      {/* file picker */}
-      {/* postt button */}
+      <ImageUpload />
 
       {/* modal............................................................................. */}
 
