@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Button } from "@material-ui/core";
+import { db, storage } from "./firebase";
 
 const ImageUpload = () => {
   const [image, setImage] = useState(null);
@@ -12,7 +13,13 @@ const ImageUpload = () => {
     }
   };
 
-  const handleUpload = () => {};
+  const handleUpload = () => {
+    const uploadTask = storage.ref(`images/${image.name}`).put(image);
+
+    uploadTask.on("state__changed", (snapshot) => {
+      //progress function
+    });
+  };
 
   return (
     <div>
