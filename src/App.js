@@ -205,7 +205,7 @@ const App = () => {
       {/*  posts.......................................................................................... */}
       {posts.map(({ id, post }) => (
         <Post
-          key={id}
+          id={post.id}
           caption={post.caption}
           username={post.username}
           imageUrl={post.imageUrl}

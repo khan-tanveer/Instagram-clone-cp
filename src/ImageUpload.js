@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import { Button } from "@material-ui/core";
+import firebase from "firebase/app";
 import { db, storage } from "./firebase";
-import "firebase/firestore";
+// import "firebase/firestore";
+// import firebase from "firebase/firebase-app";
+// import firebase from "firebase/app";
+// import "firebase/storage";
 
-const ImageUpload = ({ username, firebase }) => {
+const ImageUpload = ({ username }) => {
   const [image, setImage] = useState(null);
   const [progress, setProgress] = useState(0);
   const [caption, setCaption] = useState("");
@@ -34,7 +38,7 @@ const ImageUpload = ({ username, firebase }) => {
       () => {
         //complete function
         storage
-          .ref("image")
+          .ref("images")
           .child(image.name)
           .getDownloadURL()
           .then((url) => {
@@ -47,9 +51,9 @@ const ImageUpload = ({ username, firebase }) => {
               username: username,
             });
 
+            setImage(null);
             setProgress(0);
             setCaption("");
-            setImage(null);
           });
       }
     );
@@ -57,10 +61,6 @@ const ImageUpload = ({ username, firebase }) => {
 
   return (
     <div>
-      {/* I want to have a.... */}
-      {/* caption input */}
-      {/* file picker */}
-      {/* post button */}
       <progress value={progress} max="100" />
       <input
         type="text"
@@ -68,8 +68,8 @@ const ImageUpload = ({ username, firebase }) => {
         value={caption}
         onChange={(e) => setCaption(e.target.value)}
       />
-      <input type="file" onChange={handleChange} />
-      <Button onClick={handleUpload}>Upload</Button>
+      <input type="file" onChange={(e) => handleChange(e)} />
+      <Button onClick={() => handleUpload()}>Upload</Button>
     </div>
   );
 };
