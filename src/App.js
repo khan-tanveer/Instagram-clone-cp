@@ -4,6 +4,7 @@ import Post from "./Post";
 import { db, auth } from "./firebase";
 import { Button, Input, makeStyles, Modal } from "@material-ui/core";
 import ImageUpload from "./ImageUpload";
+import InstagramEmbed from "react-instagram-embed";
 
 // modal styles.................................................................................
 
@@ -181,30 +182,46 @@ const App = () => {
           src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png"
           alt=""
         />
+        {/* Button */}
+        {user ? (
+          <Button onClick={() => auth.signOut()}>logout</Button>
+        ) : (
+          <div className="app__loginContainer">
+            <Button onClick={() => setOpenSignIn(true)}>SIGN IN</Button>
+            <Button onClick={() => setOpen(true)}>SIGN UP</Button>
+          </div>
+        )}
       </div>
 
-      {/* Button */}
-
-      {user ? (
-        <Button onClick={() => auth.signOut()}>logout</Button>
-      ) : (
-        <div className="app__loginContainer">
-          <Button onClick={() => setOpenSignIn(true)}>SIGN IN</Button>
-          <Button onClick={() => setOpen(true)}>SIGN UP</Button>
-        </div>
-      )}
-
-      <h1>hello khan programmer so let's build instagram clone with react</h1>
-
       {/*  posts.......................................................................................... */}
-      {posts.map(({ id, post }) => (
-        <Post
-          id={id}
-          caption={post.caption}
-          username={post.username}
-          imageUrl={post.imageUrl}
-        />
-      ))}
+
+      <div className="app__posts">
+        <div className="app__postsLeft">
+          {posts.map(({ id, post }) => (
+            <Post
+              id={id}
+              caption={post.caption}
+              username={post.username}
+              imageUrl={post.imageUrl}
+            />
+          ))}
+        </div>
+
+        <div className="app__postsRight">
+          <InstagramEmbed
+            url="https://www.instagram.com/p/B_uf9dmAGPw/"
+            maxWidth={320}
+            hideCaption={false}
+            containerTagName="div"
+            protocol=""
+            injectScript
+            onLoading={() => {}}
+            onSuccess={() => {}}
+            onAfterRender={() => {}}
+            onFailure={() => {}}
+          />
+        </div>
+      </div>
 
       {user?.displayName ? (
         <ImageUpload username={user.displayName} />
