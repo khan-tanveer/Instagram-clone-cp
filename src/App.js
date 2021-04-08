@@ -111,12 +111,6 @@ const App = () => {
 
   return (
     <div className="App">
-      {user?.displayName ? (
-        <ImageUpload username={user.displayName} />
-      ) : (
-        <h3>sorry you need to login to upload</h3>
-      )}
-
       {/* modal............................................................................. */}
 
       <Modal open={open} onClose={() => setOpen(false)}>
@@ -205,12 +199,18 @@ const App = () => {
       {/*  posts.......................................................................................... */}
       {posts.map(({ id, post }) => (
         <Post
-          id={post.id}
+          id={id}
           caption={post.caption}
           username={post.username}
           imageUrl={post.imageUrl}
         />
       ))}
+
+      {user?.displayName ? (
+        <ImageUpload username={user.displayName} />
+      ) : (
+        <h3>sorry you need to login to upload</h3>
+      )}
     </div>
   );
 };
