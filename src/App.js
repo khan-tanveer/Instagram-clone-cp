@@ -199,7 +199,8 @@ const App = () => {
         <div className="app__postsLeft">
           {posts.map(({ id, post }) => (
             <Post
-              id={id}
+              postId={id}
+              key={id}
               caption={post.caption}
               username={post.username}
               imageUrl={post.imageUrl}
@@ -209,7 +210,10 @@ const App = () => {
 
         <div className="app__postsRight">
           <InstagramEmbed
-            url="https://www.instagram.com/p/B_uf9dmAGPw/"
+            url="https://www.instagram.com/punsi_ahir/"
+            // url="https://www.instagram.com/p/B_uf9dmAGPw/"
+            // url="https://www.instagram.com/p/CJnHr-4jo3d2eH9qditeHBuW8xBoqLzAHupcZM0/"
+            clientAccessToken="123|456"
             maxWidth={320}
             hideCaption={false}
             containerTagName="div"
