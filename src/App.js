@@ -45,7 +45,7 @@ const App = () => {
 
   // for posts
 
-  // useEffect runs based on a specific condition......................................
+  // useEffect runs based on a specific condition........................................
 
   useEffect(() => {
     // this is where the code runs
@@ -60,17 +60,17 @@ const App = () => {
     });
   }, []);
 
-  //authentication part..............................................
+  //authentication part..................................................
   //userlogin and logout
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
       if (authUser) {
-        // user has logged in
+        // user has logged in....
         console.log(authUser);
         setUser(authUser);
       } else {
-        // user has logged out
+        // user has logged out...
         setUser(null);
       }
 

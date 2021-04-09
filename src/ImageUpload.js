@@ -21,7 +21,7 @@ const ImageUpload = ({ username }) => {
     uploadTask.on(
       "state__changed",
       (snapshot) => {
-        //progress function
+        //progress function.....
         const progress = Math.round(
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100
         );
