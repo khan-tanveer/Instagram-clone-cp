@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
 import "./Post.css";
 import Avatar from "@material-ui/core/Avatar";
+import firebase from "firebase";
 import { db } from "./firebase";
 
-const Posts = ({ postId, username, caption, imageUrl }) => {
+const Posts = ({ postId, user, username, caption, imageUrl }) => {
   const [comments, setComments] = useState([]);
+
+  // form k liye hai .........................................
+  const [comment, setComment] = useState("");
 
   useEffect(() => {
     let unsubscribe;
@@ -13,9 +17,11 @@ const Posts = ({ postId, username, caption, imageUrl }) => {
         .collection("posts")
         .doc(postId)
         .collection("comments")
+        .orderBy("timestamp", "desc")
         .onSnapshot((snapshot) => {
-          setComments(snapshot.doc.map((doc) => doc.data()));
+          setComments(snapshot.docs.map((doc) => doc.data()));
         });
+      console.log("commetdb");
     }
 
     return () => {
@@ -23,8 +29,19 @@ const Posts = ({ postId, username, caption, imageUrl }) => {
     };
   }, [postId]);
 
+  const postComment = (e) => {
+    e.preventDefault();
+
+    db.collection("posts").doc(postId).collection("comments").add({
+      comment: comment,
+      username: user.displayName,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+    });
+    setComments("");
+  };
+
   return (
-    <div key={postId} className="post">
+    <div className="post">
       {/* header => avatar + username ............................................*/}
       <div className="post__header">
         <Avatar
@@ -42,6 +59,37 @@ const Posts = ({ postId, username, caption, imageUrl }) => {
       <h4 className="post__text">
         <strong>{username}</strong> {caption}
       </h4>
+
+      {/* commets */}
+
+      <div className="post__comments">
+        {comments.map((comment) => (
+          <p>
+            <strong>{comment?.username} : </strong>
+            {comment?.comment}
+          </p>
+        ))}
+      </div>
+
+      {user && (
+        <form className="post__commentBox">
+          <input
+            className="post__input"
+            type="text"
+            placeholder="Add a comment..."
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
+          />
+          <button
+            className="post__button"
+            disabled={!comment}
+            type="submit"
+            onClick={postComment}
+          >
+            post
+          </button>
+        </form>
+      )}
     </div>
   );
 };

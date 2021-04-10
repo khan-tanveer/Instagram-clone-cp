@@ -201,6 +201,7 @@ const App = () => {
             <Post
               postId={id}
               key={id}
+              user={user}
               caption={post.caption}
               username={post.username}
               imageUrl={post.imageUrl}
