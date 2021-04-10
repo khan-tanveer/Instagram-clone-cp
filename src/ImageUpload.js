@@ -21,25 +21,25 @@ const ImageUpload = ({ username }) => {
     uploadTask.on(
       "state__changed",
       (snapshot) => {
-        //progress function.....
+        //progress function............................................
         const progress = Math.round(
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100
         );
         setProgress(progress);
       },
       (error) => {
-        //error function
+        //error function.................................................
         console.log(error);
         alert(error.message);
       },
       () => {
-        //complete function
+        //complete function...................................................
         storage
           .ref("images")
           .child(image.name)
           .getDownloadURL()
           .then((url) => {
-            //post the image inside the database
+            //post the image inside the database........................................
 
             db.collection("posts").add({
               timestamp: firebase.firestore.FieldValue.serverTimestamp(),
