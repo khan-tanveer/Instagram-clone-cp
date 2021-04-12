@@ -21,7 +21,6 @@ const Posts = ({ postId, user, username, caption, imageUrl }) => {
         .onSnapshot((snapshot) => {
           setComments(snapshot.docs.map((doc) => doc.data()));
         });
-      console.log("commetdb");
     }
 
     return () => {
@@ -37,7 +36,7 @@ const Posts = ({ postId, user, username, caption, imageUrl }) => {
       username: user.displayName,
       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
     });
-    setComments("");
+    setComment("");
   };
 
   return (
@@ -63,7 +62,7 @@ const Posts = ({ postId, user, username, caption, imageUrl }) => {
       {/* commets */}
 
       <div className="post__comments">
-        {comments.map((comment) => (
+        {comments?.map((comment) => (
           <p>
             <strong>{comment?.username} : </strong>
             {comment?.comment}
