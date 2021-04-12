@@ -5,6 +5,7 @@ import { db, auth } from "./firebase";
 import { Button, Input, makeStyles, Modal } from "@material-ui/core";
 import ImageUpload from "./ImageUpload";
 import InstagramEmbed from "react-instagram-embed";
+import Footer from "./Footer";
 
 // import ParticlesBg from "particles-bg";
 
@@ -182,7 +183,10 @@ const App = () => {
       <Modal open={postImage} onClose={() => setPostImage(false)}>
         <div style={modalStyle} className={classes.paper}>
           {user?.displayName ? (
-            <ImageUpload username={user.displayName} />
+            <ImageUpload
+              onClick={() => setPostImage(false)}
+              username={user.displayName}
+            />
           ) : (
             <h3>sorry you need to login to upload</h3>
           )}
@@ -201,16 +205,24 @@ const App = () => {
           src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png"
           alt=""
         />
+
         {/* Button */}
+
         {user ? (
           <div>
-            <Button onClick={() => setPostImage(true)}>Post</Button>
-            <Button onClick={() => auth.signOut()}>logout</Button>
+            <Button color="primary" onClick={() => setPostImage(true)}>
+              Post
+            </Button>
+            <Button color="primary" onClick={() => auth.signOut()}>
+              logout
+            </Button>
           </div>
         ) : (
           <div className="app__loginContainer">
             <Button onClick={() => setOpenSignIn(true)}>SIGN IN</Button>
-            <Button onClick={() => setOpen(true)}>SIGN UP</Button>
+            <Button color="primary" onClick={() => setOpen(true)}>
+              SIGN UP
+            </Button>
           </div>
         )}
       </div>
@@ -256,6 +268,7 @@ const App = () => {
       ) : (
         <h3>sorry you need to login to upload</h3>
       )} */}
+      <Footer />
     </div>
   );
 };

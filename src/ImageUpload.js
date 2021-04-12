@@ -3,6 +3,8 @@ import { Button } from "@material-ui/core";
 import firebase from "firebase/app";
 import { db, storage } from "./firebase";
 import "./ImageUpload.css";
+// import { Label } from "@material-ui/core";
+import { InputLabel, FormControl, Input } from "@material-ui/core";
 
 const ImageUpload = ({ username }) => {
   const [image, setImage] = useState(null);
@@ -60,16 +62,23 @@ const ImageUpload = ({ username }) => {
     <div className="imageUpload">
       {/* <p>{caption}</p> */}
       <progress className="imageUpload__progress" value={progress} max="100" />
-      <input
-        type="text"
-        placeholder="Enter a caption..."
-        value={caption}
-        onChange={(e) => setCaption(e.target.value)}
-      />
-      <input type="file" onChange={(e) => handleChange(e)} />
-      <Button color="primary" onClick={() => handleUpload()}>
-        Upload
-      </Button>
+      <FormControl>
+        <InputLabel>Enter a caption</InputLabel>
+        <Input
+          type="text"
+          placeholder="Enter a caption..."
+          value={caption}
+          onChange={(e) => setCaption(e.target.value)}
+        />
+        <Input type="file" onChange={(e) => handleChange(e)} />
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={() => handleUpload()}
+        >
+          Upload
+        </Button>
+      </FormControl>
     </div>
   );
 };
