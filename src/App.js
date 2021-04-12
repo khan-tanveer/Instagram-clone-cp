@@ -6,6 +6,8 @@ import { Button, Input, makeStyles, Modal } from "@material-ui/core";
 import ImageUpload from "./ImageUpload";
 import InstagramEmbed from "react-instagram-embed";
 
+// import ParticlesBg from "particles-bg";
+
 // modal styles.................................................................................
 
 function getModalStyle() {
@@ -42,6 +44,7 @@ const App = () => {
   const [password, setPassword] = useState("");
   const [user, setUser] = useState(null);
   const [openSignIn, setOpenSignIn] = useState(false);
+  const [postImage, setPostImage] = useState(false);
 
   // for posts
 
@@ -174,9 +177,25 @@ const App = () => {
         </div>
       </Modal>
 
+      {/* post modal .............................................................................................*/}
+
+      <Modal open={postImage} onClose={() => setPostImage(false)}>
+        <div style={modalStyle} className={classes.paper}>
+          {user?.displayName ? (
+            <ImageUpload username={user.displayName} />
+          ) : (
+            <h3>sorry you need to login to upload</h3>
+          )}
+        </div>
+      </Modal>
+
       {/* Header .................................................................................... */}
 
       <div className="app__header">
+        {/* <img
+          src="https://www.google.com/search?q=instagram+logo&sxsrf=ALeKk02xnMT1BamkmWIbn9yrygSP50bmfw:1618224030091&tbm=isch&source=iu&ictx=1&fir=4gaF9zT9EahDpM%252CD0B7xzmsBt9K9M%252C_&vet=1&usg=AI4_-kSBmG-_ghujvFSWEU_jPc877yu3wA&sa=X&ved=2ahUKEwieqOujwvjvAhXCZSsKHS9EA8cQ9QF6BAgJEAE#imgrc=4gaF9zT9EahDpM"
+          alt=""
+        /> */}
         <img
           className="app__headerImage"
           src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png"
@@ -184,7 +203,10 @@ const App = () => {
         />
         {/* Button */}
         {user ? (
-          <Button onClick={() => auth.signOut()}>logout</Button>
+          <div>
+            <Button onClick={() => setPostImage(true)}>Post</Button>
+            <Button onClick={() => auth.signOut()}>logout</Button>
+          </div>
         ) : (
           <div className="app__loginContainer">
             <Button onClick={() => setOpenSignIn(true)}>SIGN IN</Button>
@@ -197,6 +219,7 @@ const App = () => {
 
       <div className="app__posts">
         <div className="app__postsLeft">
+          {/* <ParticlesBg type="lines" bg={true}></ParticlesBg> */}
           {posts.map(({ id, post }) => (
             <Post
               postId={id}
@@ -228,11 +251,11 @@ const App = () => {
         </div>
       </div>
 
-      {user?.displayName ? (
+      {/* {user?.displayName ? (
         <ImageUpload username={user.displayName} />
       ) : (
         <h3>sorry you need to login to upload</h3>
-      )}
+      )} */}
     </div>
   );
 };

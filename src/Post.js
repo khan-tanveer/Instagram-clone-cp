@@ -3,6 +3,9 @@ import "./Post.css";
 import Avatar from "@material-ui/core/Avatar";
 import firebase from "firebase";
 import { db } from "./firebase";
+import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
+import ChatBubbleOutlineIcon from "@material-ui/icons/ChatBubbleOutline";
+import ScreenShareIcon from "@material-ui/icons/ScreenShare";
 
 const Posts = ({ postId, user, username, caption, imageUrl }) => {
   const [comments, setComments] = useState([]);
@@ -53,6 +56,13 @@ const Posts = ({ postId, user, username, caption, imageUrl }) => {
 
       {/* Image */}
       <img className="post__image" src={imageUrl} alt="" />
+
+      {/* icons */}
+      <div className="post__iconslcs">
+        <FavoriteBorderIcon className="post__icon" />
+        <ChatBubbleOutlineIcon className="post__icon" />
+        <ScreenShareIcon className="post__icon" />
+      </div>
 
       {/* username + caption */}
       <h4 className="post__text">

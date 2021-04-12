@@ -1,12 +1,29 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200;300;400;600&display=swap");
+
 * {
   margin: 0;
+  font-family: "Josefin Sans", sans-serif;
 }
 
 .app {
-  background-color: #fafafa;
+  /* background-color: #fafafa; */
 }
 
 .app__posts {
+  background: #dddddd3d;
+  /* background-color: black; */
+  /* background: #ff5f6d; */
+  /* background: -webkit-linear-gradient(
+    to right,
+    #ffc371,
+    #ff5f6d
+  );
+  background: linear-gradient(
+    to right,
+    #ffc371,
+    #ff5f6d
+  ); */
+
   padding: 20px;
   display: flex;
   justify-content: center;
@@ -17,11 +34,11 @@
 }
 
 .app__header {
+  background: #dd2a7b;
   position: sticky;
   top: 0;
   z-index: 1;
-  background-color: white;
-  padding: 20px;
+  padding: 15px;
   border-bottom: 1px solid lightgray;
   object-fit: contain;
   display: flex;

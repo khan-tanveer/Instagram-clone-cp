@@ -1,8 +1,12 @@
 .post {
-  background-color: white;
+  background-image: url("data:image/jpeg;base64,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");
+  background-repeat: no-repeat;
+  background-size: cover;
+
   max-width: 500px;
   border: 1px solid lightgray;
   margin-bottom: 45px;
+  border-radius: 15px;
 }
 
 .post__image {
@@ -12,15 +16,26 @@
   border-bottom: 1px solid lightgray;
 }
 
+.post__iconslcs {
+  margin: 10px;
+  /* padding: 5px; */
+  display: flex;
+  /* justify-content: space-between; */
+}
+
+.post__icon {
+  padding: 5px;
+}
+
 .post__text {
-  font-weight: normal;
+  font-weight: 700;
   padding: 20px;
 }
 
 .post__header {
   display: flex;
   align-items: center;
-  padding: 20px;
+  padding: 10px;
 }
 
 .post__avatar {
@@ -33,10 +48,11 @@
 }
 
 .post__comments {
-  padding: 20px;
+  padding: 15px;
 }
 
 .post__input {
+  margin: 10px;
   flex: 1;
   border: none;
   padding: 10px;
@@ -44,6 +60,7 @@
 }
 
 .post__button {
+  margin: 10px;
   flex: 0;
   border: none;
   border-top: 1px solid lightgray;
