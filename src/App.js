@@ -196,15 +196,13 @@ const App = () => {
       {/* Header .................................................................................... */}
 
       <div className="app__header">
-        {/* <img
-          src="https://www.google.com/search?q=instagram+logo&sxsrf=ALeKk02xnMT1BamkmWIbn9yrygSP50bmfw:1618224030091&tbm=isch&source=iu&ictx=1&fir=4gaF9zT9EahDpM%252CD0B7xzmsBt9K9M%252C_&vet=1&usg=AI4_-kSBmG-_ghujvFSWEU_jPc877yu3wA&sa=X&ved=2ahUKEwieqOujwvjvAhXCZSsKHS9EA8cQ9QF6BAgJEAE#imgrc=4gaF9zT9EahDpM"
-          alt=""
-        /> */}
-        <img
-          className="app__headerImage"
-          src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png"
-          alt=""
-        />
+        <div className="app__headerImage">
+          <img src="" alt="" />
+          <img
+            src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png"
+            alt=""
+          />
+        </div>
 
         {/* Button */}
 
