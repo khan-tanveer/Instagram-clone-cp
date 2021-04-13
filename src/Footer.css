@@ -1,10 +1,16 @@
 .footer {
-  background-color: black;
-  color: white;
+  background-image: linear-gradient(
+    to right,
+    #f58529,
+    #f79c38,
+    #f9b24a,
+    #fcc660,
+    #feda77
+  );
+  color: black;
 }
 
 .footer__title {
   text-align: center;
-  margin-top: 5px;
   padding: 10px;
 }

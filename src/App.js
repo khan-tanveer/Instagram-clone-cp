@@ -173,7 +173,7 @@ const App = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <Button onClick={signIn}>Sign Ip</Button>
+            <Button onClick={signIn}>Sign IN</Button>
           </form>
         </div>
       </Modal>
